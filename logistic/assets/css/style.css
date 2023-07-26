@@ -806,9 +806,9 @@ ol {
 /* Articles */
 .articles {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 30px;
+    margin: 0 -15px 30px;
 }
 
 .articles--column {
@@ -824,6 +824,7 @@ ol {
     width: 100%;
     max-width: 500px;
     margin-bottom: 20px;
+    padding: 0 15px;
 }
 
 .articles__title {
@@ -1186,7 +1187,6 @@ ol {
         height: 50px;
     }
 
-
     /* Nav */
     .nav {
         display: none;
@@ -1255,6 +1255,73 @@ ol {
         order: 2;
         position: static;
     }
+
+    /* Benifist */
+    .benefits {
+        flex-direction: column;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .benefits__col {
+        width: 100%;
+    }
+
+    .benefits___lift {
+        margin-bottom: 30px;
+        max-width: none;
+    }
+
+    /* team */
+
+    .team {
+        flex-direction: column;
+    }
+
+
+
+    .team__col {
+        width: 100%;
+    }
+
+    .team__col:last-child {
+        margin-bottom: 0;
+    }
+
+    .team__item {
+        max-width: 370px;
+        margin: 0 auto;
+    }
+
+    /* Mission */
+
+    .mission-title {
+        font-size: 50px;
+    }
+
+    .mission {
+        padding: 30px 20px;
+        margin-top: -10px;
+    }
+
+    .mission__title {
+        font-size: 20px;
+    }
+
+    .mission__subtitle {
+        font-size: 16px;
+    }
+
+    /* Articles */
+
+    .articles {
+        flex-wrap: wrap;
+
+    }
+
+    .articles__item {
+        max-width: none;
+    }
 }
 
 
@@ -1282,6 +1349,10 @@ ol {
 
     .section {
         padding: 30px 0;
+    }
+
+    .section--last {
+        margin-bottom: 30px;
     }
 
     .section__title {
