@@ -4,10 +4,13 @@ $(function () {
     // Получаем объекты секции "intro" и шапки сайта
     let intro = $("#intro");
     let header = $("#header");
-
     // Получаем высоту шапки сайта и секции "intro" сразу после загрузки страницы
     let headerH = header.innerHeight(); // метод который высчитывает высоту любого <div> который указан в переменной.
     let introH = intro.innerHeight();
+
+
+    // Header class on scroll
+    // =============================================================
 
     headerScroll();
 
@@ -32,4 +35,18 @@ $(function () {
             header.removeClass("header--dark");
         }
     }
+
+    // Smooth Scroll to section
+    // =============================================================
+    $("[data-scroll]").on("click", function (event) {
+        event.preventDefault();
+
+        let scrollEl = $(this).data("scroll");
+        let scrollElPos = $(scrollEl).offset().top;
+
+        $("html, body").animate({
+            scrollTop: scrollElPos - headerH
+        }, 500);
+    });
 });
+
