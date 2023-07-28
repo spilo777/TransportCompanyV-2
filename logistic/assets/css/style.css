@@ -79,6 +79,8 @@ ol {
     left: 0;
     right: 0;
     z-index: 1000;
+
+    transition: .4s linear;
 }
 
 .header--dark {
