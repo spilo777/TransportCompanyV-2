@@ -1,43 +1,39 @@
-// Ждем, пока страница полностью загрузится, после чего выполняем код
 $(function () {
 
-    // Получаем объекты секции "intro" и шапки сайта
     let intro = $("#intro");
     let header = $("#header");
-    // Получаем высоту шапки сайта и секции "intro" сразу после загрузки страницы
-    let headerH = header.innerHeight(); // метод который высчитывает высоту любого <div> который указан в переменной.
     let introH = intro.innerHeight();
+    let headerH = header.innerHeight();
+    let scrollTop = $(window).scrollTop();
 
 
-    // Header class on scroll
-    // =============================================================
+    /* Header class on scroll
+    =====================================*/
 
     headerScroll();
 
-    $(window).on("scroll resize", function () {
+    $(window).on("scroll  resize", function () {
         headerScroll();
     });
 
-    // Функция отслеживает события прокрутки страницы и изменения размеров окна (resize)
     function headerScroll() {
-        // При каждом событии прокрутки или изменения размеров окна, обновляем высоту шапки и секции "intro"
-        headerH = header.innerHeight(); // метод который высчитывает высоту любого <div> который указан в переменной.
         introH = intro.innerHeight();
+        headerH = header.innerHeight();
 
-        // Получаем текущую позицию прокрутки страницы
         let scrollTop = $(this).scrollTop();
 
-        // Если позиция прокрутки больше или равна разнице между высотой секции "intro" и шапки, добавляем класс для темного фона шапки
         if (scrollTop >= (introH - headerH)) {
             header.addClass("header--dark");
         } else {
-            // В противном случае, удаляем класс для темного фона шапки
             header.removeClass("header--dark");
         }
     }
 
-    // Smooth Scroll to section
-    // =============================================================
+
+
+    /* Smooth Scroll to sections
+    =====================================*/
+
     $("[data-scroll]").on("click", function (event) {
         event.preventDefault();
 
@@ -46,11 +42,38 @@ $(function () {
 
         $("html, body").animate({
             scrollTop: scrollElPos - headerH
-        }, 500);
+        }, 500)
     });
+
+
+
+
+    /* ScrollSpy
+    =====================================*/
+    let windowH = $(window).height();
+    scrollSpy(scrollTop);
+
+    $(window).on("scroll", function () {
+        scrollTop = $(this).scrollTop();
+        scrollSpy(scrollTop);
+    });
+
+    function scrollSpy(scrollTop) {
+        $("[data-scrollspy]").each(function () {
+            let $this = $(this);
+            let sectionId = $this.data('scrollspy');
+            let sectionOffset = $this.offset().top;
+            sectionOffset = sectionOffset - (windowH * 0.33333);
+
+            if (scrollTop >= sectionOffset) {
+                $('#nav [data-scroll]').removeClass('active');
+                $('#nav [data-scroll="' + sectionId + '"]').addClass('active');
+            }
+
+            if (scrollTop == 0) {
+                $('#nav [data-scroll]').removeClass('active');
+            }
+        });
+    }
+
 });
-
-
-// ScrollSpy
-
-
