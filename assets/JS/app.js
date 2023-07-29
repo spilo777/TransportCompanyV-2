@@ -72,4 +72,19 @@ $(function () {
     }
 
 
+
+    // Modal
+    // =============================================
+
+    $("[data-modal]").on("click", function (event) {
+        event.preventDefault();
+        let modal = $(this).data("modal");
+
+        console.log(modal);
+
+        $('body').addClass('no-scroll');
+        $(modal).addClass('show');
+
+    });
+
 });
