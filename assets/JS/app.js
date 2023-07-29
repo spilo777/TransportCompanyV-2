@@ -29,8 +29,6 @@ $(function () {
         }
     }
 
-
-
     /* Smooth Scroll to sections
     =====================================*/
 
@@ -44,12 +42,6 @@ $(function () {
             scrollTop: scrollElPos - headerH
         }, 500)
     });
-<<<<<<< HEAD
-});
-=======
-
-
-
 
     /* ScrollSpy
     =====================================*/
@@ -81,4 +73,3 @@ $(function () {
 
 
 });
->>>>>>> 19ee19ca09eb6304c99d8cb62188759c8ace58e6
