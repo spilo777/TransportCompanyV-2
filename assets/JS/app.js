@@ -76,14 +76,14 @@ $(function () {
     // Modal
     // =============================================
 
-    $('[data-modal]').on('click', function(event) {
+    $('[data-modal]').on('click', function (event) {
         event.preventDefault();
         let modal = $(this).data('modal');
 
         $('body').addClass('no-scroll');
         $(modal).addClass('show');
 
-        setTimeout(function() {
+        setTimeout(function () {
             $(modal).find('.modal__content').css({
                 transform: 'scale(1)',
                 opacity: '1'
@@ -92,20 +92,20 @@ $(function () {
     });
 
 
-    $('[data-modal-close]').on('click', function(event) {
+    $('[data-modal-close]').on('click', function (event) {
         event.preventDefault();
         let modal = $(this).parents('.modal');
         modalClose(modal);
     });
 
 
-    $('.modal').on('click', function() {
+    $('.modal').on('click', function () {
         let modal = $(this);
         modalClose(modal);
     });
 
 
-    $('.modal__content').on('click', function(event) {
+    $('.modal__content').on('click', function (event) {
         event.stopPropagation();
     });
 
@@ -116,7 +116,7 @@ $(function () {
             opacity: '0'
         });
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('body').removeClass('no-scroll');
             modal.removeClass('show');
         }, 200);
@@ -124,6 +124,32 @@ $(function () {
 
 
 
+
+    // slick-slider - https://kenwheeler.github.io/slick/
+    // ==================================================
+
+    let introSlider = $('#introSlider');
+
+
+    introSlider.slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 2200
+    });
+
+
+    $('#introSliderPrev').on('click', function () {
+        introSlider.slick('slickPrev');
+    })
+
+    $('#introSliderNext').on('click', function () {
+        introSlider.slick('slickNext');
+    })
 
 });
 
