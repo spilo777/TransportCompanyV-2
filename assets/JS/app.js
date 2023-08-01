@@ -1,5 +1,28 @@
 $(function () {
 
+
+    /* Nav Toggle on mobile
+    ======================================*/
+
+    let navToggle = $('#navToggle');
+    let nav = $('#nav');
+
+    navToggle.on('click', function (event) {
+        event.preventDefault();
+
+        $("body").toggleClass('show-nav');
+        $(this).toggleClass('active');
+        nav.toggleClass('show');
+    });
+
+    $(window).on("resize", function () {
+        $("body").removeClass('show-nav');
+        navToggle.removeClass('active');
+        nav.removeClass('show');
+    });
+
+
+
     let intro = $("#intro");
     let header = $("#header");
     let introH = intro.innerHeight();
@@ -29,6 +52,8 @@ $(function () {
         }
     }
 
+
+
     /* Smooth Scroll to sections
     =====================================*/
 
@@ -38,10 +63,17 @@ $(function () {
         let scrollEl = $(this).data("scroll");
         let scrollElPos = $(scrollEl).offset().top;
 
+        $("body").removeClass('show-nav');
+        navToggle.removeClass('active');
+        nav.removeClass('show');
+
         $("html, body").animate({
             scrollTop: scrollElPos - headerH
         }, 500)
     });
+
+
+
 
     /* ScrollSpy
     =====================================*/
@@ -73,8 +105,8 @@ $(function () {
 
 
 
-    // Modal
-    // =============================================
+    /* Modal
+    =====================================*/
 
     $('[data-modal]').on('click', function (event) {
         event.preventDefault();
@@ -125,11 +157,13 @@ $(function () {
 
 
 
-    // slick-slider - https://kenwheeler.github.io/slick/
-    // ==================================================
+    /* Slick slider
+       https://kenwheeler.github.io/slick/
+    ===================================*/
 
-    let introSlider = $('#introSlider');
 
+    /* Intro Slider */
+    let introSlider = $("#introSlider");
 
     introSlider.slick({
         infinite: true,
@@ -137,25 +171,24 @@ $(function () {
         slidesToScroll: 1,
         arrows: false,
         fade: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 4000,
-        speed: 2200
+        speed: 500
     });
 
 
     $('#introSliderPrev').on('click', function () {
-        introSlider.slick('slickPrev');
-    })
+        introSlider.slick('slickPrev')
+    });
 
     $('#introSliderNext').on('click', function () {
-        introSlider.slick('slickNext');
-    })
+        introSlider.slick('slickNext')
+    });
 
 
-    // reviewsSlider
-    // ======================
-    let reviewsSlider = $('#reviewsSlider');
 
+    /* Reviews Slider */
+    let reviewsSlider = $("#reviewsSlider");
 
     reviewsSlider.slick({
         infinite: true,
@@ -165,5 +198,8 @@ $(function () {
         dots: true,
         speed: 500
     });
-});
 
+
+
+
+});
