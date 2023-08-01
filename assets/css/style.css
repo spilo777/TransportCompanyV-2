@@ -80,7 +80,7 @@ ol {
     right: 0;
     z-index: 1000;
 
-    transition: .4s linear;
+    transition: background .2s linear;
 }
 
 .header--dark {
@@ -110,6 +110,8 @@ ol {
 
     color: #fff;
     text-decoration: none;
+
+    transition: background .2s linear;
 }
 
 .nav__link:not(.active):hover {
@@ -138,8 +140,6 @@ ol {
 .intro {
     margin-bottom: 30px;
     position: relative;
-
-    background-color: #000;
 }
 
 .intro--blog {
@@ -159,24 +159,39 @@ ol {
     height: 100%;
     overflow: hidden;
 
+    background: #04222a url("../images/intro-bg.jpg") no-repeat center;
+    background-size: cover;
+
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
 }
 
-.intro__slider-item {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.intro__slider .slider-item {
+    display: none;
+}
+
+.intro__slider.slick-initialized {
+    background: #04222a;
+}
+
+.intro__slider.slick-initialized .slider-item {
+    display: block;
 }
 
 .intro__slider .slick-list,
 .intro__slider .slick-track {
-
     height: 100%;
+}
+
+.intro__slider-item {
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .intro__slider-photo {
@@ -187,9 +202,7 @@ ol {
     object-position: center;
 }
 
-
-
-.intro__slider-arrow {
+.intro__slider-arrows {
     position: absolute;
     bottom: 30px;
     left: 430px;
@@ -199,12 +212,12 @@ ol {
     width: 0;
     height: 0;
     padding: 0;
-
-    margin: 0 5px;
+    margin: 0 3px;
 
     font-size: 0;
     color: transparent;
     cursor: pointer;
+
     background: none;
 }
 
@@ -212,10 +225,7 @@ ol {
     outline: none;
 }
 
-
-
 .intro__slider-btn--prev {
-
     border-style: solid;
     border-width: 10px 10px 10px 0;
     border-color: transparent #fff transparent transparent;
@@ -225,7 +235,6 @@ ol {
     border-style: solid;
     border-width: 10px 0 10px 10px;
     border-color: transparent transparent transparent #fff;
-
 }
 
 .intro__inner {
@@ -271,8 +280,6 @@ ol {
 }
 
 
-
-
 /* Request form */
 .request-form {
     width: 100%;
@@ -286,7 +293,6 @@ ol {
 .request-form--intro {
     position: relative;
     bottom: -30px;
-
 }
 
 .request-form--right {
@@ -621,10 +627,18 @@ ol {
 
 .reviews {
     position: relative;
+    height: 200px;
+
+    background: url("../images/ajax-loader.gif") no-repeat center;
 }
 
-.reviews::before,
-.reviews::after {
+.reviews.slick-initialized {
+    background: none;
+    height: auto;
+}
+
+.reviews:before,
+.reviews:after {
     content: "";
     display: block;
     width: 10px;
@@ -635,19 +649,17 @@ ol {
     z-index: 3;
 }
 
-.reviews::before {
-
+.reviews:before {
     left: 0;
 
     background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
 }
 
-.reviews::after {
-    background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
+.reviews:after {
     right: 0;
+
+    background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
 }
-
-
 
 .reviews .slick-list {
     padding-top: 20px;
@@ -661,33 +673,37 @@ ol {
 
     position: absolute;
     bottom: -20px;
-
     left: 0;
     z-index: 3;
 }
 
 .reviews .slick-dots li {
-    margin: 0 8px;
+    margin: 0 5px;
 }
 
 .reviews .slick-dots li.slick-active button {
-    background: #004AF2;
-    box-shadow: 0 0 0 5px rgba(0, 74, 242, .11);
+    background-color: #004AF2;
+    border-color: rgba(0, 74, 242, .11);
+    /*box-shadow: 0 0 0 5px rgba(0, 74, 242, .11);*/
 }
 
 .reviews .slick-dots button {
+    box-sizing: content-box;
     display: block;
     width: 10px;
     height: 10px;
     padding: 0;
 
-    cursor: pointer;
-    background: #DBDBDB;
-    border: 0;
+    background-color: #DBDBDB;
+    background-clip: content-box;
+    border: 5px solid transparent;
     border-radius: 50%;
+    cursor: pointer;
 
     color: transparent;
     font-size: 0;
+
+    transition: background-color .2s linear, border-color .2s linear;
 }
 
 .reviews .slick-dots button:focus {
@@ -695,6 +711,7 @@ ol {
 }
 
 .reviews__item {
+    display: none;
     padding: 0 10px;
 }
 
@@ -719,7 +736,6 @@ ol {
     left: 2px;
     z-index: 1;
 }
-
 
 .reviews__header-content {
     flex-grow: 1;
@@ -810,7 +826,7 @@ ol {
 .benefits-list:after {
     background-image: url("../images/pin-end.svg");
 
-    bottom: -25px;
+    bottom: -4px;
 }
 
 .benefits-list__item:not(:last-child) {
@@ -1120,6 +1136,7 @@ ol {
     position: relative;
 
     background-color: #fff;
+    opacity: 0;
 
     transform: scale(0.5);
     transition: transform .2s ease-out, opacity .2s ease-out;
@@ -1361,7 +1378,7 @@ ol {
     /* Clients */
     .clients {
         flex-direction: column;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
     }
 
     .clients__logos,
@@ -1464,6 +1481,10 @@ ol {
 
     .intro__title-amp {
         font-size: 100px;
+    }
+
+    .intro__slider-arrows {
+        display: none;
     }
 
 
@@ -1643,6 +1664,12 @@ ol {
 
     .clients__list-logo {
         margin: 0 auto;
+    }
+
+    .clients-love {
+        display: block;
+        margin-left: 0;
+        margin-top: 20px;
     }
 
 
